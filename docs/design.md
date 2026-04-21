@@ -5,18 +5,7 @@
 - **Non-goals**: Real GDS integrations, full fare rules, caching strategy beyond basic recommendations, payments/booking.
 
 ### Architecture (logical)
-```mermaid
-flowchart LR
-  U[Client] -->|POST /api/search| API[Next.js API Route]
-  API -->|parse| LLM[LLM Parse Layer]
-  API -->|fan-out (parallel)| P1[Provider: Sabre (mock)]
-  API -->|fan-out (parallel)| P2[Provider: Amadeus (mock)]
-  API -->|fan-out (parallel)| P3[Provider: HotelBeds-style (mock)]
-  P1 --> API
-  P2 --> API
-  P3 --> API
-  API -->|normalize + rank| U
-```
+![Ziarah Flight Search Service Architecture](./architecture.png)
 
 ### Service boundaries
 - **Single service** for this scope: orchestration + normalization + provider clients. This minimizes network hops and tail latency and keeps operational overhead low for the assignment.
