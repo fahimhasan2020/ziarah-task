@@ -1,0 +1,15 @@
+services:
+  api:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "3000:3000"
+    environment:
+      LOG_LEVEL: info
+      PROVIDER_TIMEOUT_MS: 1200
+      PROVIDER_FAILURE_RATE: 0.2
+      SABRE_LATENCY_MS: 650
+      AMADEUS_LATENCY_MS: 700
+      HOTELBEDS_LATENCY_MS: 800
+
